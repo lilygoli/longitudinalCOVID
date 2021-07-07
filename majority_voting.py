@@ -28,6 +28,9 @@ def main(config, resume=None):
     dataset = config.retrieve_class('dataset', module_dataset)(
         **config['dataset']['args'], phase=Phase.TEST, evaluate=config['evaluate']
     )
+
+    assert config['data_loader']['args'][
+               'batch_size'] == 1, "batch_size > 1! Configure batch_size in model config to one."
     data_loader = config.retrieve_class('data_loader', module_data_loader)(
         dataset=dataset,
         batch_size=config['data_loader']['args']['batch_size'],
@@ -59,7 +62,7 @@ def main(config, resume=None):
     res = config['dataset']['args']['size']
 
     total_metrics = torch.zeros(len(metric_fns), config['dataset']['args']['n_classes'])
-    volume_metrics = torch.zeros(len(metric_fns),config['dataset']['args']['n_classes'])
+    volume_metrics = torch.zeros(len(metric_fns), config['dataset']['args']['n_classes'])
 
     with torch.no_grad():
         # setup
@@ -70,7 +73,7 @@ def main(config, resume=None):
         data_shape = [res, res, res]
 
         output_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
-        # avg_seg_volume = None
+        
         target_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
 
         n_samples = 0
@@ -86,9 +89,7 @@ def main(config, resume=None):
 
                 x_ref, x, _, target = loaded_data[0], loaded_data[1], loaded_data[2], loaded_data[3]
                 x_ref, x, target = x_ref.to(device), x.to(device), target.to(device)
-                output,_ = model(x_ref, x)
-               
-
+                output, _ = model(x_ref, x)
 
             for cl in range(output_agg.size()[0]):
                 x = output_agg[cl].to('cpu').numpy()
@@ -102,8 +103,6 @@ def main(config, resume=None):
                 z = np.transpose(x, alignment[axis])
                 z[c] += y
                 target_agg[cl] = torch.tensor(np.transpose(z, alignment[axis])).to(device)
-
-
 
             c += 1
             print("C is: ", c, "res is: ", res, flush=True)
@@ -123,7 +122,8 @@ def main(config, resume=None):
                     label_out = output_agg.argmax(0)
                     label_target = target_agg.argmax(0)
 
-                    evaluate_timestep(output_agg.unsqueeze(0), target_agg.unsqueeze(0), label_out, label_target, metric_fns, config, path, volume,
+                    evaluate_timestep(output_agg.unsqueeze(0), target_agg.unsqueeze(0), label_out, label_target,
+                                      metric_fns, config, path, volume,
                                       volume_metrics, total_metrics,
                                       logger)
 
@@ -136,16 +136,15 @@ def main(config, resume=None):
 
                     volume += 1
 
-
     logger.info('================================')
     logger.info(f'Averaged over all patients:')
     for i, met in enumerate(metric_fns):
         logger.info(f'      {met.__name__}: {total_metrics[i].item() / n_samples}')
 
 
-def evaluate_timestep(avg_seg_volume, target_agg, label_out, label_target, metric_fns, config, path, patient, volume_metrics, total_metrics,
+def evaluate_timestep(avg_seg_volume, target_agg, label_out, label_target, metric_fns, config, path, patient,
+                      volume_metrics, total_metrics,
                       logger):
-
     prefix = f'{config["evaluate"].value}{(int(patient) + 1):02}'
     seg_volume = label_out.int().cpu().detach().numpy()
     rotated_seg_volume = rotate(rotate(seg_volume, -90, axes=(0, 1)), 90, axes=(1, 2))
@@ -169,8 +168,6 @@ def evaluate_timestep(avg_seg_volume, target_agg, label_out, label_target, metri
         except Exception:
             print("Invalid metric shape.")
             continue
-
-
 
 
 if __name__ == '__main__':
