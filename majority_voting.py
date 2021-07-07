@@ -73,7 +73,7 @@ def main(config, resume=None):
         data_shape = [res, res, res]
 
         output_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
-        
+
         target_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
 
         n_samples = 0
@@ -136,8 +136,13 @@ def main(config, resume=None):
 
                     volume += 1
 
+                    output_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
+
+                    target_agg = torch.zeros([config['dataset']['args']['n_classes'], *data_shape]).to(device)
+
     logger.info('================================')
     logger.info(f'Averaged over all patients:')
+
     for i, met in enumerate(metric_fns):
         logger.info(f'      {met.__name__}: {total_metrics[i].item() / n_samples}')
 
