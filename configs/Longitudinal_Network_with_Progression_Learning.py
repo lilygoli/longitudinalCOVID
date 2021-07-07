@@ -15,7 +15,7 @@ CONFIG = {
         }
     },
     "dataset": {
-        "type": "ISBIDatasetLongitudinal",
+        "type": "DatasetLongitudinal",
         "num_patients": 22,
         "cross_val": True,
         "val_fold_num": 4,
@@ -30,7 +30,7 @@ CONFIG = {
         }
     },
     "data_loader": {
-        "type": "ISBIDataloader",
+        "type": "Dataloader",
         "args": {
             "batch_size": 2,
             "shuffle": True, # for test to use LTPR and VD metrics use False

@@ -16,8 +16,8 @@ from torchvision.transforms import transforms
 from dataset.dataset_utils import Phase, Modalities, Views, Mode, retrieve_data_dir_paths, Evaluate
 
 
-class ISBIDatasetStatic(Dataset):
-    """ISBIDatasetStatic dataset"""
+class DatasetStatic(Dataset):
+    """DatasetStatic dataset"""
 
     def __init__(self, data_dir, phase=Phase.TRAIN, modalities=(), val_patients=None, evaluate: Evaluate = Evaluate.TRAINING, preprocess=True, size=300, n_classes=5,
                  view: Views = None):

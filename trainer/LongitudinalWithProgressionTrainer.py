@@ -1,13 +1,13 @@
 import numpy
 
 from logger import Mode
-from trainer.ISBITrainer import ISBITrainer
+from trainer.Trainer import Trainer
 from utils.illustration_util import log_visualizations
 import torch.nn.functional as F
 import torch
 
 
-class LongitudinalWithProgressionTrainer(ISBITrainer):
+class LongitudinalWithProgressionTrainer(Trainer):
     """
     Trainer class for training with original loss + difference map loss + reverse order for reference and CT loss
     """

@@ -1,10 +1,10 @@
 from logger import Mode
-from trainer.ISBITrainer import ISBITrainer
+from trainer.Trainer import Trainer
 from utils.illustration_util import  log_visualizations
 import torch.nn.functional as F
 
 
-class StaticTrainer(ISBITrainer):
+class StaticTrainer(Trainer):
     """
     Trainer class for base training
     """

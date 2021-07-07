@@ -13,7 +13,7 @@ import model as module_arch
 import model.utils.loss as module_loss
 import model.utils.metric as module_metric
 import trainer as trainer_module
-from dataset.ISBIDatasetStatic import Phase
+from dataset.DatasetStatic import Phase
 from dataset.dataset_utils import Views
 from parse_config import ConfigParser, parse_cmd_args
 

@@ -11,7 +11,7 @@ import data_loader as module_data_loader
 import dataset as module_dataset
 import model as module_arch
 import model.utils.metric as module_metric
-from dataset.ISBIDatasetStatic import Phase
+from dataset.DatasetStatic import Phase
 from dataset.dataset_utils import Evaluate, Dataset
 from parse_config import ConfigParser, parse_cmd_args
 

@@ -14,7 +14,7 @@ CONFIG = {
         }
     },
     "dataset": {
-        "type": "ISBIDatasetStatic",
+        "type": "DatasetStatic",
         "num_patients": 22,
         "cross_val": True,
         "val_fold_num": 4,
@@ -29,7 +29,7 @@ CONFIG = {
         }
     },
     "data_loader": {
-        "type": "ISBIDataloader",
+        "type": "Dataloader",
         "args": {
             "batch_size": 1,
             "shuffle": False,

@@ -8,7 +8,7 @@ from logger import Mode
 from utils import MetricTracker
 
 
-class ISBITrainer(BaseTrainer):
+class Trainer(BaseTrainer):
     """
     Trainer class
     """
@@ -37,7 +37,7 @@ class ISBITrainer(BaseTrainer):
 
     @abstractmethod
     def _process(self, epoch, data_loader, metrics, mode: Mode = Mode.TRAIN):
-        raise NotImplementedError('Method _process() from ISBITrainer class has to be implemented!')
+        raise NotImplementedError('Method _process() from Trainer class has to be implemented!')
 
     def _train_epoch(self, epoch):
         """

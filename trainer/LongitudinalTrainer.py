@@ -2,13 +2,13 @@
 import numpy
 
 from logger import Mode
-from trainer.ISBITrainer import ISBITrainer
+from trainer.Trainer import Trainer
 from utils.illustration_util import log_visualizations
 import torch.nn.functional as F
 import torch
 
 
-class LongitudinalTrainer(ISBITrainer):
+class LongitudinalTrainer(Trainer):
     """
     Trainer class
     """

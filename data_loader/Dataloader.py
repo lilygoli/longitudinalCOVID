@@ -2,9 +2,9 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, Weigh
 from torch.utils.data.dataloader import default_collate
 import numpy as np
 
-class ISBIDataloader(DataLoader):
+class Dataloader(DataLoader):
     """
-    ISBI data loading -- uncomment the commented lines for reverse weight sampling the classes
+    data loading -- uncomment the commented lines for reverse weight sampling the classes
     """
 
     def __init__(self, dataset, batch_size, shuffle=True, num_workers=1):

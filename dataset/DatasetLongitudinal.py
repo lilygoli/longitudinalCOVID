@@ -12,8 +12,8 @@ from torchvision import transforms
 from dataset.dataset_utils import Phase, Modalities, Mode, retrieve_data_dir_paths, Evaluate
 
 
-class ISBIDatasetLongitudinal(Dataset):
-    """ISBIDatasetLongitudinal dataset"""
+class DatasetLongitudinal(Dataset):
+    """DatasetLongitudinal dataset"""
 
     def __init__(self, data_dir, phase=Phase.TRAIN, modalities=(), val_patients=None,
                  evaluate: Evaluate = Evaluate.TRAINING, size=300, n_classes=5, preprocess=True, view=None):
