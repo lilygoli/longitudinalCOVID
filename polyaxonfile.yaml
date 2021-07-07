@@ -1,0 +1,24 @@
+version: 1
+kind: experiment
+framework: pytorch
+tags:
+  - test_longitudinal
+build:
+  image: 'pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime'
+  build_steps:
+    - pip install -r requirements.txt
+environment:
+  resources:
+    cpu:
+      requests: 3
+      limits: 3
+    memory:
+      requests: 30000
+      limits: 40000
+    gpu:
+      requests: 1
+      limits: 1
+run:
+  cmd: python main.py -c Static_Network.py  -t True --path
+    /data/COVID_longitudinal/best/static/fold4.pth
+

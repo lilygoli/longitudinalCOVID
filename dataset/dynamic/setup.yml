@@ -1,0 +1,39 @@
+alias: dynamic
+crop_zeros: false
+id_col: pat_id
+labelmaps:
+- pathology
+- lung
+- lobe
+labels:
+  lobe:
+    bg: 0
+    l_inf: 2
+    l_sup: 1
+    r_inf: 5
+    r_mid: 4
+    r_sup: 3
+  lung:
+    bg: 0
+    lung: 1
+  pathology:
+    bg: 0
+    ggo: 2
+    healthy: 1
+    scar: 3
+    pleff: 4
+license: tbd
+modalities:
+- ct
+name: CoViD19 KRI CTs Longitudinal
+path_patterns:
+  ct: OriginalCTs/{pat_id}.nii.gz
+  lobe: LobeMasks/{pat_id}_lobe.nii.gz
+  lung: LungMasks/{pat_id}_lung.nii.gz
+  pathology: PathologyMasks/{pat_id}_pathology.nii.gz
+patient_glob: '*.nii.gz'
+resample: true
+resolution:
+- 1.8
+- 1.8
+- 1.8

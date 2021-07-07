@@ -1,0 +1,45 @@
+channels:
+- ct
+df_hash: 7d5d12a4ad4fb18d4f5ec14a8c443031fd4ec9b620e489647648abf5a4a953db
+full_labels:
+  lobes:
+    bg: Background
+    l_inf: Left Inferior
+    l_sup: Left Superior
+    r_inf: Right Inferior
+    r_mid: Right Middle
+    r_sup: Right Superior
+  lung:
+    bg: Background
+    lung: Lung
+  pathology:
+    bg: background
+    ggo: Ground Glass Opacity
+    healthy: Healthy Lung
+    pleff: Pleural Effusion
+    scar: Scar Tissue
+labelmap: pathology
+labels:
+- bg
+- healthy
+- ggo
+- scar
+- pleff
+lazy_loading: true
+name: lung
+preprocessing:
+  clip: true
+  clip_low_thr: -1024
+  clip_up_thr: 150
+  crop: true
+  crop_threshold: -1024
+  mask: null
+  norm_mask: true
+  norm_method: minmax
+  normalize: true
+  save_mask: false
+seed: 42
+setup_hash: a6c158a65e968e2839f4ea8790ab1deaf38d3c2e5fdca6237565ae362666f02b
+test_size: 0.0
+val_size: 0.1
+stratify: false
