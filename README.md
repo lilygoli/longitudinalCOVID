@@ -77,8 +77,8 @@ To run the experiments from our paper the following table specifies the commands
 | Network                                   | Command                                                              |
 |-------------------------------------------|----------------------------------------------------------------------|
 | Longitudinal Network            | python main.py -c Longitudinal_Network.py                 |
-| Longitudinal Network with Progression learning     | python main.py -c Longitudinal_Network_with_Progression_Learning.py |
-| Longitudinal Late Fusion Network                      | python main.py -c Longitudinal_Late_Fusion.py                           |
+| Longitudinal Network with Progression loss     | python main.py -c Longitudinal_Network_with_Progression_Learning.py |
+| Longitudinal Late Fusion Network  (multi-view)                   | python main.py -c Longitudinal_Late_Fusion.py                           |
 | Static Network                            | python main.py -c Static_Network.py                                 |
 
 ### Validation and Cross Validation
@@ -109,7 +109,7 @@ example:
   python main.py -c Static_Network.py  -t True --path
     /data/COVID_longitudinal/best/static/model.pth
   ```
-Also the Majority Voting code can be exectude by using the following format:
+Also the Majority Voting code can be executed by using the following format:
 
   ```
   python main.py -c <config .py for the network>  -t True --path <path to model>
